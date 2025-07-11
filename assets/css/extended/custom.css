@@ -1,0 +1,531 @@
+/* Hugo博客自定义样式优化 */
+/* 基于PaperMod主题的增强样式 */
+
+/* ===== 全局样式优化 ===== */
+:root {
+  /* 自定义颜色变量 */
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --accent-color: #f59e0b;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  
+  /* 渐变色 */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  
+  /* 阴影效果 */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* 动画时长 */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* ===== 字体优化 ===== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* 中文字体优化 */
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ===== 头部导航优化 ===== */
+.header {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-normal);
+}
+
+[data-theme="dark"] .header {
+  background: rgba(16, 16, 16, 0.9);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 导航链接悬停效果 */
+.header nav a {
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: width var(--transition-normal);
+}
+
+.header nav a:hover::after {
+  width: 100%;
+}
+
+/* ===== 首页优化 ===== */
+.home-info {
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-info::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.home-info .home-info-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== 文章列表优化 ===== */
+.post-entry {
+  background: var(--theme);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.post-entry::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
+  transform: scaleY(0);
+  transition: transform var(--transition-normal);
+}
+
+.post-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.post-entry:hover::before {
+  transform: scaleY(1);
+}
+
+/* 文章标题样式 */
+.post-entry .entry-header h2 {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all var(--transition-fast);
+}
+
+/* 文章元信息 */
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.post-meta .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--secondary);
+}
+
+/* ===== 文章内容优化 ===== */
+.post-content {
+  line-height: 1.8;
+}
+
+/* 标题样式增强 */
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  position: relative;
+  margin: 2rem 0 1rem 0;
+  padding-left: 1rem;
+}
+
+.post-content h1::before,
+.post-content h2::before,
+.post-content h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+/* 段落优化 */
+.post-content p {
+  margin: 1.2rem 0;
+  text-align: justify;
+}
+
+/* 引用块样式 */
+.post-content blockquote {
+  border-left: 4px solid var(--primary-color);
+  background: rgba(37, 99, 235, 0.05);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+
+.post-content blockquote::before {
+  content: '💡';
+  position: absolute;
+  top: 1rem;
+  left: -12px;
+  background: var(--theme);
+  padding: 0.25rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+
+/* ===== 代码块优化 ===== */
+.post-content pre {
+  background: #1e293b !important;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  position: relative;
+  box-shadow: var(--shadow-md);
+}
+
+.post-content pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 12px 12px 0 0;
+}
+
+/* 行内代码 */
+.post-content code:not(pre code) {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary-color);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* 代码复制按钮优化 */
+.copy-button {
+  background: var(--gradient-primary) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 0.5rem !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.copy-button:hover {
+  transform: scale(1.05) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* ===== 标签和分类优化 ===== */
+.post-tags a,
+.terms-tags a {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  display: inline-block;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+}
+
+.post-tags a:hover,
+.terms-tags a:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== 分页导航优化 ===== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.pagination a,
+.pagination span {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border);
+}
+
+.pagination a:hover {
+  background: var(--gradient-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== 搜索页面优化 ===== */
+#searchbox {
+  background: var(--theme);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  width: 100%;
+  transition: all var(--transition-normal);
+}
+
+#searchbox:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+/* ===== 目录优化 ===== */
+.toc {
+  background: rgba(37, 99, 235, 0.05);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.toc-title {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toc-title::before {
+  content: '📋';
+  font-size: 1.2rem;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.toc li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  transition: transform var(--transition-fast);
+}
+
+.toc li:hover::before {
+  transform: rotate(90deg);
+}
+
+.toc a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.toc a:hover {
+  color: var(--primary-color);
+}
+
+/* ===== 响应式优化 ===== */
+@media (max-width: 768px) {
+  .home-info {
+    padding: 2rem 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .post-entry {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .post-content h1,
+  .post-content h2,
+  .post-content h3,
+  .post-content h4,
+  .post-content h5,
+  .post-content h6 {
+    margin: 1.5rem 0 0.75rem 0;
+  }
+  
+  .post-content pre {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+}
+
+/* ===== 滚动条优化 ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+/* ===== 加载动画 ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.post-entry,
+.post-content > * {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* ===== 深色模式优化 ===== */
+[data-theme="dark"] .post-content blockquote {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+[data-theme="dark"] .post-content code:not(pre code) {
+  background: rgba(37, 99, 235, 0.2);
+}
+
+[data-theme="dark"] .toc {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+
+/* ===== 打印样式优化 ===== */
+@media print {
+  .header,
+  .footer,
+  .post-nav,
+  .share-buttons {
+    display: none !important;
+  }
+  
+  .post-content {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  .post-content h1,
+  .post-content h2,
+  .post-content h3 {
+    page-break-after: avoid;
+  }
+  
+  .post-content pre {
+    page-break-inside: avoid;
+    background: #f5f5f5 !important;
+    color: #333 !important;
+  }
+}
+
+/* ===== 无障碍优化 ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 焦点可见性 */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* 减少动画（用户偏好） */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

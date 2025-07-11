@@ -3,9 +3,64 @@ languageCode = 'zh-cn'
 title = '我的Hugo博客'
 theme = 'PaperMod'
 
+# Hugo性能优化
+summaryLength = 150
+
+# 分页配置
+[pagination]
+  pagerSize = 10
+enableRobotsTXT = true
+enableGitInfo = true
+enableEmoji = true
+
+# 构建优化
+[minify]
+  disableCSS = false
+  disableHTML = false
+  disableJS = false
+  disableJSON = false
+  disableSVG = false
+  disableXML = false
+
+# 语法高亮配置
+[markup]
+  [markup.highlight]
+    style = 'github-dark'
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ""
+    anchorLineNos = false
+    lineAnchors = ""
+    tabWidth = 4
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = false
+    startLevel = 2
+
+# 输出格式
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+
+# SEO优化
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
 [params]
   author = "Your Name"
-  description = "这是我的Hugo博客"
+  description = "这是我的Hugo博客，分享技术心得与生活感悟"
+  keywords = ["Hugo", "博客", "技术", "编程", "前端"]
+  
+  # 功能开关
   ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = true
@@ -19,8 +74,15 @@ theme = 'PaperMod'
   comments = false
   hidemeta = false
   hideSummary = false
-  showtoc = false
-  tocopen = false
+  showtoc = true
+  tocopen = true
+  
+  # 主题设置
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  
+  # 性能优化
+  env = "production"
 
 [params.homeInfoParams]
   Title = "欢迎来到我的博客"
