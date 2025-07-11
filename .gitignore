@@ -33,3 +33,4 @@ yarn-error.log*
 .hugo_build.lock
 
 a-demo
+python-wechat-mcp
